@@ -1,0 +1,270 @@
+db_bibliotecaproyecto
+
+Categoria:
+
+Get:
+localhost:8083/api/v1/categorias
+localhost:8083/api/v1/categorias/1
+
+Post:
+{
+    "nombreCategoria": "Paralelepipedo"
+    }
+
+Put:
+localhost:8083/api/v1/categorias/4
+{
+    "nombreCategoria": "GeometryDash2"
+    }
+
+Delete:
+localhost:8083/api/v1/categorias/4
+
+
+
+
+Autor:
+
+Get:
+localhost:8081/api/v1/autores
+localhost:8081/api/v1/autores/1
+localhost:8081/api/v1/autores/nombreapellido?nombreAutor=J.K.&apellidoAutor=Rowling
+
+Post:
+{
+    "nombreAutor": "Tatsuki",
+    "apellidoAutor": "Fujimoto"
+}
+
+Put:
+{
+    "nombreAutor": "Hayao",
+    "apellidoAutor": "Miyazaki"
+}
+
+Delete:
+localhost:8081/api/v1/autores/5
+
+
+
+Rol:
+localhost:8084/api/v1/roles
+localhost:8084/api/v1/roles/1
+
+Post:
+{
+    "nombreRol": "Noob",
+    "descripcionRol": "Perfil sin privilegios."
+}
+
+Delete:
+localhost:8084/api/v1/roles/3
+
+
+
+
+Usuarios:
+
+Get:
+localhost:8090/api/v1/usuarios
+localhost:8090/api/v1/usuarios/2
+localhost:8090/api/v1/usuarios/buscar/nombreapellido?nombreUsuario=Camilo&apellidoUsuario=Baeza
+localhost:8090/api/v1/usuarios/buscar/correo?correoUsuario=camilob@gmail.com
+localhost:8090/api/v1/usuarios/buscar/estado?estadoUsuario=inhabilitado
+
+Post:
+{
+    "nombreUsuario": "Benjamin",
+    "apellidoPaternoUsuario": "Figueroa",
+    "apellidoMaternoUsuario": "Neira",
+    "correoUsuario": "Benjafig@gmail.com",
+    "estadoUsuario": "habilitado",
+    "idRol": "1"
+}
+
+Put:
+localhost:8090/api/v1/usuarios/4
+{
+    "nombreUsuario": "Benjamin",
+    "apellidoPaternoUsuario": "Figueroa",
+    "apellidoMaternoUsuario": "Neira",
+    "correoUsuario": "Benjafig@gmail.com",
+    "estadoUsuario": "habilitado",
+    "idRol": "2"
+}
+
+Delete:
+localhost:8090/api/v1/usuarios/4
+
+
+Salas:
+
+Get:
+localhost:8086/api/v1/salas
+localhost:8086/api/v1/salas/1
+localhost:8086/api/v1/salas/nombre?nombreSala=Sala 1
+
+Post:
+{
+    "nombreSala": "Sala 4",
+    "capacidadSala": 10
+}
+
+Put:
+localhost:8086/api/v1/salas/4
+{
+    "nombreSala": "Sala 4",
+    "capacidadSala": 5
+}
+
+Delete:
+localhost:8086/api/v1/salas/4
+
+
+
+
+Reservas:
+
+Get:
+localhost:8087/api/v1/reservas
+localhost:8087/api/v1/reservas/1
+localhost:8087/api/v1/reservas/Sala/2
+localhost:8087/api/v1/reservas/Usuario/3
+
+Post:
+{
+    "fechaReserva": "2026-05-29",
+    "horaInicioReserva": "13:00:00",
+    "horaFinReserva": "18:00:00",
+    "idUsuario": 3,
+    "idSala": 3
+}
+
+Put:
+{
+    "fechaReserva": "2026-05-29",
+    "horaInicioReserva": "13:00:00",
+    "horaFinReserva": "18:00:00",
+    "idUsuario": 2,
+    "idSala": 3
+}
+
+Delete:
+localhost:8087/api/v1/reservas/3
+
+
+
+Libros:
+
+Get:
+localhost:8082/api/v1/libros
+localhost:8082/api/v1/libros/2
+localhost:8082/api/v1/libros/buscar?titulo=Harry Potter
+localhost:8082/api/v1/libros/categoria/3
+
+Post:
+{
+        "isbnLibro": "979-04",
+        "tituloLibro": "Luna de Pluto",
+        "anioLibro": 2016,
+        "idCategoria": 3,
+        "idAutor": 1
+    }
+
+Put:
+localhost:8082/api/v1/libros/5
+{
+        "isbn": "975-04",
+        "titulo": "El Libro Troll",
+        "anio": 2016,
+        "idCategoria": 2,
+        "idAutor": 1
+    }
+
+Delete:
+localhost:8082/api/v1/libros/5
+
+
+
+Stock:
+
+Get:
+localhost:8085/api/v1/stocks
+localhost:8085/api/v1/stocks/2
+localhost:8085/api/v1/stocks/Libro/1
+
+Post:
+{
+    "cantidad": 10,
+    "estado_ejemplar": "Mal",
+    "libroId": 1
+}
+
+Put:
+localhost:8085/api/v1/stocks/5
+{
+    "cantidad": 5,
+    "estado_ejemplar": "Mal",
+    "libroId": 1
+}
+
+Delete:
+localhost:8085/api/v1/stocks/5
+
+
+
+
+Prestamo:
+
+Get:
+localhost:8094/api/v1/prestamos
+localhost:8094/api/v1/prestamos/1
+localhost:8094/api/v1/prestamos/Usuario/1
+
+Post:
+{
+    "fechaInicio": "2026-03-13",
+    "fechaLimite": "2026-08-13",
+    "estadoPrestamo": "Activo",
+    "idUsuario": "3",
+    "idStock": 1
+}
+
+Put:
+localhost:8094/api/v1/prestamos/4
+{
+    "fechaInicio": "2026-03-13",
+    "fechaLimite": "2026-08-13",
+    "estadoPrestamo": "Activo",
+    "idUsuario": "2",
+    "idStock": 1
+}
+
+Delete:
+localhost:8094/api/v1/prestamos/4
+
+
+Multa:
+
+Get:
+localhost:8092/api/v1/multas
+localhost:8092/api/v1/multas/1
+
+
+Post:
+{
+    "montoMulta": 1000.00,
+    "estadoMulta": "Pendiente",
+    "idPrestamo": 2
+}
+
+Put:
+localhost:8092/api/v1/multas/3
+{
+    "montoMulta": 1000.00,
+    "estadoMulta": "Pendiente",
+    "idPrestamo": 3
+}
+
+Delete:
+localhost:8092/api/v1/multas/3

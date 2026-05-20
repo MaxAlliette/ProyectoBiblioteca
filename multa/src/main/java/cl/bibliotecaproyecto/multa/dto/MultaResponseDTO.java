@@ -1,0 +1,20 @@
+package cl.bibliotecaproyecto.multa.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.math.BigDecimal;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class MultaResponseDTO {
+
+    private Long idMulta;
+    private BigDecimal montoMulta;
+    private String estadoMulta;
+
+    private Long idPrestamo;
+
+}
