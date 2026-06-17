@@ -44,7 +44,7 @@ public class AutorController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @Operation(summary = "Bustcar autor por nombre y apellido", description = "Retorna datos del autor que se busca por su nombre y apellido")
+    @Operation(summary = "Buscar autor por nombre y apellido", description = "Retorna datos del autor que se busca por su nombre y apellido")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Exito"),
             @ApiResponse(responseCode = "500", description = "Error del servidor")

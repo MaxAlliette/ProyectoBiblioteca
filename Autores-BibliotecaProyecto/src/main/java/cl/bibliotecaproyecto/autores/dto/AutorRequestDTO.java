@@ -14,7 +14,7 @@ public class AutorRequestDTO {
     @NotBlank(message = "El nombre no puede estar vacío.")
     private String nombreAutor;
 
-    @Schema(description = "Apellido del autor", example = "Hermann")
+    @Schema(description = "Apellido del autor", example = "Hesse")
     @NotBlank(message = "El apellido no puede estar vacío.")
     private String apellidoAutor;
 }
