@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class UsuarioRequestDTO {
 
-    @Schema(description = "Nombre del usuario", example = "Camilo B")
+    @Schema(description = "Nombre del usuario", example = "Camilo")
     @NotBlank(message = "El nombre de usuario no puede estar vacío")
     private String nombreUsuario;
 

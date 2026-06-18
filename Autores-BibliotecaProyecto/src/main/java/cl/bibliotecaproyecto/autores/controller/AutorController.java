@@ -5,6 +5,7 @@ import cl.bibliotecaproyecto.autores.dto.AutorResponseDTO;
 import cl.bibliotecaproyecto.autores.model.Autor;
 import cl.bibliotecaproyecto.autores.service.AutorService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -25,7 +26,7 @@ public class AutorController {
     @Operation(summary = "Listar autores", description = "Retorna todos los autores registrados.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Exito"),
-            @ApiResponse(responseCode = "500", description = "Error del servidor")
+            @ApiResponse(responseCode = "500", description = "Error del servidor", content = @Content)
     })
     @GetMapping
     public ResponseEntity<List<AutorResponseDTO>> obtenerTodos() {
@@ -35,7 +36,9 @@ public class AutorController {
     @Operation(summary = "Buscar autor por id", description = "Retorna el autor que le corresponda el id escrito")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Exito"),
-            @ApiResponse(responseCode = "500", description = "Error del servidor")
+            @ApiResponse(responseCode = "400", description = "ID no valido", content = @Content),
+            @ApiResponse(responseCode = "404", description = "Autor no encontrado", content = @Content),
+            @ApiResponse(responseCode = "500", description = "Error del servidor", content = @Content)
     })
     @GetMapping("{id}")
     public ResponseEntity<AutorResponseDTO> obtenerPorId(@PathVariable Long id) {
@@ -47,7 +50,9 @@ public class AutorController {
     @Operation(summary = "Buscar autor por nombre y apellido", description = "Retorna datos del autor que se busca por su nombre y apellido")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Exito"),
-            @ApiResponse(responseCode = "500", description = "Error del servidor")
+            @ApiResponse(responseCode = "400", description = "Nombre y apellido no validos", content = @Content),
+            @ApiResponse(responseCode = "404", description = "Autor no encontrado", content = @Content),
+            @ApiResponse(responseCode = "500", description = "Error del servidor", content = @Content)
     })
     @GetMapping("nombreapellido")
     public ResponseEntity<List<AutorResponseDTO>> buscarPorNombreAutoryApellidoAutor(
@@ -58,7 +63,8 @@ public class AutorController {
     @Operation(summary = "Crear autor", description = "Crea autor nuevo")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Creado"),
-            @ApiResponse(responseCode = "500", description = "Error del servidor")
+            @ApiResponse(responseCode = "400", description = "Entrada no valida", content = @Content),
+            @ApiResponse(responseCode = "500", description = "Error del servidor", content = @Content)
     })
     @PostMapping
     public ResponseEntity<AutorResponseDTO> crear(
@@ -70,7 +76,8 @@ public class AutorController {
     @Operation(summary = "Actualizar autor", description = "Actualiza datos del autor que le pertenezca el id escrito")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Exito"),
-            @ApiResponse(responseCode = "500", description = "Error del servidor")
+            @ApiResponse(responseCode = "400", description = "ID no valido", content = @Content),
+            @ApiResponse(responseCode = "500", description = "Error del servidor", content = @Content)
     })
     @PutMapping("{id}")
     public ResponseEntity<AutorResponseDTO> actualizar(@PathVariable Long id, @Valid @RequestBody AutorRequestDTO dto){
@@ -82,7 +89,8 @@ public class AutorController {
     @Operation(summary = "Eliminar autor", description = "Elimina autor buscado por su id")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "204", description = "No hay contenido. Autor eliminado correctamente"),
-            @ApiResponse(responseCode = "500", description = "Error del servidor")
+            @ApiResponse(responseCode = "404", description = "Autor no encontrado", content = @Content),
+            @ApiResponse(responseCode = "500", description = "Error del servidor", content = @Content)
     })
     @DeleteMapping("{id}")
     public ResponseEntity<Void> eliminar(@PathVariable Long id){
