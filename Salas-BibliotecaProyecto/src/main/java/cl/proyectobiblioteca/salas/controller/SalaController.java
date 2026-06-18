@@ -4,6 +4,7 @@ import cl.proyectobiblioteca.salas.dto.SalaRequestDTO;
 import cl.proyectobiblioteca.salas.dto.SalaResponseDTO;
 import cl.proyectobiblioteca.salas.service.SalaService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -23,7 +24,7 @@ public class SalaController {
     @Operation(summary = "Listar Salas", description = "Retorna todas las salas registradas.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Exito"),
-            @ApiResponse(responseCode = "500", description = "Error del servidor")
+            @ApiResponse(responseCode = "500", description = "Error del servidor", content = @Content)
     })
     @GetMapping
     public ResponseEntity<List<SalaResponseDTO>> obtenerTodos() {
@@ -33,7 +34,9 @@ public class SalaController {
     @Operation(summary = "Buscar sala por id", description = "Retorna la sala que le corresponda el id escrito")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Exito"),
-            @ApiResponse(responseCode = "500", description = "Error del servidor")
+            @ApiResponse(responseCode = "400", description = "ID no valido", content = @Content),
+            @ApiResponse(responseCode = "404", description = "Sala no encontrada", content = @Content),
+            @ApiResponse(responseCode = "500", description = "Error del servidor", content = @Content)
     })
     @GetMapping("{id}")
     public ResponseEntity<SalaResponseDTO> obtenerPorId(@PathVariable Long id) {
@@ -45,7 +48,8 @@ public class SalaController {
     @Operation(summary = "Crear sala", description = "Crea sala nueva")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Creada"),
-            @ApiResponse(responseCode = "500", description = "Error del servidor")
+            @ApiResponse(responseCode = "400", description = "Entrada no valida", content = @Content),
+            @ApiResponse(responseCode = "500", description = "Error del servidor", content = @Content)
     })
     @PostMapping
     public ResponseEntity<SalaResponseDTO> crear(
@@ -56,7 +60,8 @@ public class SalaController {
     @Operation(summary = "Actualizar sala", description = "Actualiza datos de la sala que le pertenezca el id escrito")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Exito"),
-            @ApiResponse(responseCode = "500", description = "Error del servidor")
+            @ApiResponse(responseCode = "400", description = "ID no valido", content = @Content),
+            @ApiResponse(responseCode = "500", description = "Error del servidor", content = @Content)
     })
     @PutMapping("{id}")
     public ResponseEntity<SalaResponseDTO> actualizar(@PathVariable Long id, @Valid @RequestBody SalaRequestDTO dto){
@@ -68,7 +73,8 @@ public class SalaController {
     @Operation(summary = "Eliminar sala", description = "Elimina sala buscada por su id")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "204", description = "No hay contenido. Sala eliminada correctamente"),
-            @ApiResponse(responseCode = "500", description = "Error del servidor")
+            @ApiResponse(responseCode = "404", description = "Sala no encontrada", content = @Content),
+            @ApiResponse(responseCode = "500", description = "Error del servidor", content = @Content)
     })
     @DeleteMapping("{id}")
     public ResponseEntity<Void> eliminar(@PathVariable Long id){
@@ -79,10 +85,12 @@ public class SalaController {
         return ResponseEntity.noContent().build();
     }
 
-    @Operation(summary = "Buscar sala por nombre", description = "Retorna datos del autor que se busca por su nombre y apellido")
+    @Operation(summary = "Buscar sala por nombre", description = "Retorna datos de sala que se busca por su nombre")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Exito"),
-            @ApiResponse(responseCode = "500", description = "Error del servidor")
+            @ApiResponse(responseCode = "400", description = "Nombre no valido", content = @Content),
+            @ApiResponse(responseCode = "404", description = "Sala no encontrada", content = @Content),
+            @ApiResponse(responseCode = "500", description = "Error del servidor", content = @Content)
     })
     @GetMapping("nombre")
     public ResponseEntity<List<SalaResponseDTO>> buscarPorNombre(@RequestParam String nombreSala) {

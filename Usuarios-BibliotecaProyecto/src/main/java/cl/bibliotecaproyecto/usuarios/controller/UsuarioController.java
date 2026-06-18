@@ -4,6 +4,7 @@ import cl.bibliotecaproyecto.usuarios.dto.UsuarioRequestDTO;
 import cl.bibliotecaproyecto.usuarios.dto.UsuarioResponseDTO;
 import cl.bibliotecaproyecto.usuarios.service.UsuarioService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -24,7 +25,7 @@ public class UsuarioController {
     @Operation(summary = "Listar usuarios", description = "Retorna todos los usuarios registrados.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Exito"),
-            @ApiResponse(responseCode = "500", description = "Error del servidor")
+            @ApiResponse(responseCode = "500", description = "Error del servidor", content = @Content)
     })
     @GetMapping
     public ResponseEntity<List<UsuarioResponseDTO>> obtenerTodos(){
@@ -34,7 +35,9 @@ public class UsuarioController {
     @Operation(summary = "Buscar usuario por id", description = "Retorna el usuario que le corresponda el id escrito")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Exito"),
-            @ApiResponse(responseCode = "500", description = "Error del servidor")
+            @ApiResponse(responseCode = "400", description = "ID no valido", content = @Content),
+            @ApiResponse(responseCode = "404", description = "Usuario no encontrado", content = @Content),
+            @ApiResponse(responseCode = "500", description = "Error del servidor", content = @Content)
     })
     @GetMapping("{id}")
     public ResponseEntity<UsuarioResponseDTO> obtenerPorId(@PathVariable Long id){
@@ -46,7 +49,9 @@ public class UsuarioController {
     @Operation(summary = "Buscar usuario por nombre y apellido", description = "Retorna datos del usuario que se busca por su nombre y apellido")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Exito"),
-            @ApiResponse(responseCode = "500", description = "Error del servidor")
+            @ApiResponse(responseCode = "400", description = "Entrada no valida", content = @Content),
+            @ApiResponse(responseCode = "404", description = "Usuario no encontrado", content = @Content),
+            @ApiResponse(responseCode = "500", description = "Error del servidor", content = @Content)
     })
     @GetMapping("buscar/nombreapellido")
     public ResponseEntity<List<UsuarioResponseDTO>> buscarPorNombreUsuarioyApellidoUsuario(
@@ -57,7 +62,9 @@ public class UsuarioController {
     @Operation(summary = "Buscar usuario por correo", description = "Retorna datos del usuario que se busca por su correo")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Exito"),
-            @ApiResponse(responseCode = "500", description = "Error del servidor")
+            @ApiResponse(responseCode = "400", description = "Entrada no valida", content = @Content),
+            @ApiResponse(responseCode = "404", description = "Usuario no encontrado", content = @Content),
+            @ApiResponse(responseCode = "500", description = "Error del servidor", content = @Content)
     })
     @GetMapping("buscar/correo")
     public ResponseEntity<List<UsuarioResponseDTO>> buscarPorCorreo(
@@ -68,7 +75,9 @@ public class UsuarioController {
     @Operation(summary = "Buscar usuario por estado", description = "Retorna datos del usuario que se busca por su estado")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Exito"),
-            @ApiResponse(responseCode = "500", description = "Error del servidor")
+            @ApiResponse(responseCode = "400", description = "Entrada no valida", content = @Content),
+            @ApiResponse(responseCode = "404", description = "Usuario no encontrado", content = @Content),
+            @ApiResponse(responseCode = "500", description = "Error del servidor", content = @Content)
     })
     @GetMapping("buscar/estado")
     public ResponseEntity<List<UsuarioResponseDTO>> buscarPorEstado(
@@ -79,7 +88,8 @@ public class UsuarioController {
     @Operation(summary = "Crear usuario", description = "Crea usuario nuevo")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Creado"),
-            @ApiResponse(responseCode = "500", description = "Error del servidor")
+            @ApiResponse(responseCode = "400", description = "Entrada no valida", content = @Content),
+            @ApiResponse(responseCode = "500", description = "Error del servidor", content = @Content)
     })
     @PostMapping
     public ResponseEntity<UsuarioResponseDTO> crear(@Valid @RequestBody UsuarioRequestDTO dto) {
@@ -90,7 +100,8 @@ public class UsuarioController {
     @Operation(summary = "Actualizar usuario", description = "Actualiza datos del usuario que le pertenezca el id escrito")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Exito"),
-            @ApiResponse(responseCode = "500", description = "Error del servidor")
+            @ApiResponse(responseCode = "400", description = "ID no valido", content = @Content),
+            @ApiResponse(responseCode = "500", description = "Error del servidor", content = @Content)
     })
     @PutMapping("/{id}")
     public ResponseEntity<UsuarioResponseDTO> actualizar(
@@ -103,8 +114,9 @@ public class UsuarioController {
 
     @Operation(summary = "Eliminar usuario", description = "Elimina usuario buscado por su id")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "204", description = "No hay contenido. Autor eliminado correctamente"),
-            @ApiResponse(responseCode = "500", description = "Error del servidor")
+            @ApiResponse(responseCode = "204", description = "No hay contenido. Usuario eliminado correctamente"),
+            @ApiResponse(responseCode = "404", description = "Usuario no encontrado", content = @Content),
+            @ApiResponse(responseCode = "500", description = "Error del servidor", content = @Content)
     })
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminar(@PathVariable Long id) {
