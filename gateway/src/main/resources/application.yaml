@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: ms-gateway
+  cloud:
+    gateway:
+      server:
+        webflux:
+          routes:
+            - id: autores
+              uri: lb://AUTORES
+              predicates:
+                - Path=/api/v1/autores/**
+            - id: reservas
+              uri: lb://RESERVAS
+              predicates:
+                - Path=/api/v1/reservas/**
+            - id: salas
+              uri: lb://SALAS
+              predicates:
+                - Path=/api/v1/salas/**
+            - id: usuarios
+              uri: lb://USUARIOS
+              predicates:
+                - Path=/api/v1/usuarios/**
+          globalcors:
+            cors-configurations:
+              '[/**]':
+                allowedOrigins: "*"
+                allowedMethods:
+                  - GET
+                  - POST
+                  - PUT
+                  - DELETE
+                  - OPTIONS
+                allowedHeaders: "*"
