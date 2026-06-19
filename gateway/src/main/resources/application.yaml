@@ -36,6 +36,18 @@ spring:
               uri: lb://STOCKS
               predicates:
                 - Path=/api/v1/stocks/**
+            - id: multas
+              uri: lb://MULTAS
+              predicates:
+                - Path=/api/v1/multas/**
+            - id: libros
+              uri: lb://LIBROS
+              predicates:
+                - Path=/api/v1/libros/**
+            - id: roles
+              uri: lb://ROLES
+              predicates:
+                - Path=/api/v1/roles/**
           globalcors:
             cors-configurations:
               '[/**]':
