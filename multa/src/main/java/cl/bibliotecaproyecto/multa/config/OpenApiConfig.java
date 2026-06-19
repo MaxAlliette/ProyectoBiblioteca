@@ -12,9 +12,9 @@ public class OpenApiConfig {
     @Bean
     public OpenAPI customOpenAPI(){
         return new OpenAPI().info(new Info()
-                .title("Libros - BibliotecaProyecto")
+                .title("Multas - BibliotecaProyecto")
                 .version("1.0")
-                .description("Catalogo de libros de BibliotecaProyecto")
+                .description("Gestión de multas de BibliotecaProyecto")
                 .contact(new Contact()
                         .name("Benjamin Figueroa")
                         .email("benja.figu@gmail.com")));
