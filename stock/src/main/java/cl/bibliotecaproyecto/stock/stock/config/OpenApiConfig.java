@@ -1,5 +1,4 @@
-package cl.bibliotecaprojecto.categoria.BibliotecaProjectoCategoria.config;
-
+package cl.bibliotecaproyecto.stock.stock.config;
 
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Contact;
@@ -14,9 +13,9 @@ public class OpenApiConfig {
     public OpenAPI customOpenApi(){
         return new OpenAPI()
                 .info(new Info()
-                        .title("Categoria - BibliotecaProyecto")
+                        .title("Stock - BibliotecaProyecto")
                         .version("1.0")
-                        .description("Catalogo de categorias de BibliotecaProyecto")
+                        .description("Catalogo de stock de BibliotecaProyecto")
                         .contact(new Contact()
                                 .name("Nicolas Contador")
                                 .email("ncontadorvega@gmail.com")));

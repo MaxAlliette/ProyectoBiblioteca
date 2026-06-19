@@ -24,6 +24,18 @@ spring:
               uri: lb://USUARIOS
               predicates:
                 - Path=/api/v1/usuarios/**
+            - id: prestamos
+              uri: lb://PRESTAMOS
+              predicates:
+                - Path=/api/v1/prestamos/**
+            - id: categorias
+              uri: lb://CATEGORIAS
+              predicates:
+                - Path=/api/v1/categorias/**
+            - id: stocks
+              uri: lb://STOCKS
+              predicates:
+                - Path=/api/v1/stocks/**
           globalcors:
             cors-configurations:
               '[/**]':
