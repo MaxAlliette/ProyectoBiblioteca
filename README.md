@@ -22,6 +22,6 @@ Pasos para ejecutar:
 
 -Crear una base de datos en MySQL llamada db_bibliotecaproyecto (nosotros nos conectamos a través de XAMPP)
 
--En el IDE correr cada aplicación verificando que los puertos no estén ocupados.
+-En el IDE correr cada aplicación verificando que los puertos no estén ocupados. Primero correr server-eureka, los microservicios y finalmente gateway.
 
--Probar funcionalidades de cada aplicación a través de postman usando url http://localhost:{numero_de_puerto}/{nombre_ruta_según}
+-Probar funcionalidades de cada aplicación a través de postman usando url http://localhost:8888/api/v1/{nombre_microservicio}
