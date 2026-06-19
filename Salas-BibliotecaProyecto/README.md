@@ -1,1 +1,1 @@
-http://localhost:8086/swagger-ui/index.html#/rol-controller/obtenerPorId
+http://localhost:8086/swagger-ui/index.html#/
